@@ -1,8 +1,26 @@
-node_modules
-.DS_Store
-*-lock.*
-*.lock
+# Logs
+logs
 *.log
+npm-debug.log*
 
-/dist
-/types
+# Dependencies
+node_modules/
+
+# Coverage
+coverage
+
+# VS Code
+.vscode
+!.vscode/tasks.js
+
+# JetBrains IDEs
+.idea/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Misc
+.DS_Store

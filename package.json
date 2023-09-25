@@ -1,51 +1,55 @@
 {
-  "version": "0.0.0",
-  "name": "TODO",
-  "umd:name": "TODO",
-  "repository": "TODO_USERNAME/TODO_REPO",
-  "description": "TODO_MODULE_DESCRIPTION",
-  "unpkg": "dist/index.min.js",
-  "module": "dist/index.mjs",
+  "name": "blued-ezm-logger",
+  "version": "0.0.7",
+  "description": "blued-ezm-logger",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
-  "license": "MIT",
-  "author": {
-    "name": "TODO_YOUR_NAME",
-    "email": "YOUR_EMAIL@TODO.com",
-    "url": "https://TODO_WEBSITE.com"
-  },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
+  "scripts": {
+    "start": "NODE_ENV=local ts-node ./src/index.ts",
+    "build": "rimraf dist && tsc",
+    "watch": "tsc -w",
+    "check": "eslint --ext .ts . --fix",
+    "test": "NODE_ENV=local jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://git.blued.cn/oversea/ip-to-code.git"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "eslint": "^6.8.0",
+    "eslint-config-blued-typescript": "^1.1.2",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^4.3.6",
+    "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dayjs": "^1.11.10",
+    "logrotator": "^1.1.0",
+    "mkdirp": "^3.0.1",
+    "rotating-file-stream": "^2.1.6",
+    "winston": "^3.10.0",
+    "winston-rotating-file": "^0.2.0",
+    "winston-transport": "^4.5.0"
   },
   "engines": {
-    "node": ">=12"
+    "node": "> 8"
   },
-  "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build",
-    "types": "tsc --noEmit",
-    "test": "uvu -r tsm test"
-  },
-  "keywords": [
-    "TODO",
-    "module",
-    "keywords"
-  ],
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "13.1.3",
-    "rollup": "2.66.1",
-    "rollup-plugin-terser": "7.0.2",
-    "rollup-plugin-typescript2": "0.27.1",
-    "tsm": "2.2.1",
-    "typescript": "4.5.5",
-    "uvu": "0.5.3"
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run check"
+    }
   }
 }
