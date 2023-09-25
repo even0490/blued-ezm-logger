@@ -13,7 +13,7 @@ const transport_1 = __importDefault(require("./transport"));
 const common_1 = require("./utils/common");
 const development = process.env.NODE_ENV === 'development';
 const production = process.env.NODE_ENV === 'production';
-const localPath = path_1.default.join(path_1.default.dirname(__dirname), '../logs');
+const localPath = path_1.default.join(path_1.default.dirname(__dirname), './logs/');
 const servePath = '/data/logs/';
 const situation = !(development || production);
 const root = !situation ? servePath : localPath;
@@ -44,13 +44,13 @@ function luckyLogger(config = {}) {
     const timestamp = () => dayjs_1.default(new Date()).format('YYYY-MM-DD HH:mm:ss');
     const { maxFiles, maxSize } = options.dailyRotateFile;
     const openMeans = {};
-    common_1.levels.forEach((data) => {
+    common_1.levels.forEach(data => {
         const logger = winston_1.default.createLogger({
             level: 'verbose',
             format: options.format,
             transports: [
                 new transport_1.default({
-                    filename: options.appName,
+                    filename: `${options.fileName}.${data.type}.log`,
                     size: maxSize,
                     interval: '1d',
                     immutable: false,
@@ -65,7 +65,7 @@ function luckyLogger(config = {}) {
         if (situation) {
             const pass = data.type === 'info' || data.type === 'warn';
             logger.add(new winston_1.default.transports.Console({
-                format: winston_1.default.format.combine(winston_1.default.format.printf((info) => {
+                format: winston_1.default.format.combine(winston_1.default.format.printf(info => {
                     const { message } = info;
                     const news = pass
                         ? colors_1.default[data.color](JSON.stringify(message))
@@ -95,7 +95,7 @@ function luckyLogger(config = {}) {
      */
     function handleDaily() {
         const result = {};
-        common_1.levels.forEach((data) => {
+        common_1.levels.forEach(data => {
             const content = {
                 error: null,
                 message: null,

@@ -1,6 +1,6 @@
 {
   "name": "blued-ezm-logger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "blued-ezm-logger",
   "main": "dist/index.js",
   "files": [
@@ -11,7 +11,7 @@
     "build": "rimraf dist && tsc",
     "watch": "tsc -w",
     "check": "eslint --ext .ts . --fix",
-    "test": "NODE_ENV=local jest --coverage"
+    "test": "NODE_ENV=development jest --coverage"
   },
   "author": "",
   "license": "ISC",

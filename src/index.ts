@@ -10,7 +10,7 @@ import { handleDefault, levels } from './utils/common'
 const development = process.env.NODE_ENV === 'development'
 const production = process.env.NODE_ENV === 'production'
 
-const localPath = path.join(path.dirname(__dirname), '../logs')
+const localPath = path.join(path.dirname(__dirname), './logs/')
 const servePath = '/data/logs/'
 const situation = !(development || production)
 const root = !situation ? servePath : localPath
@@ -20,7 +20,7 @@ export default function luckyLogger(config = {}) {
     appName: 'app',
     dailyRotateFile: {
       maxFiles: 30,
-      maxSize: '10M',
+      maxSize: '100M',
     },
     fileName: 'app',
     format: winston.format.json(),
